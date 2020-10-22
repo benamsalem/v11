@@ -8,29 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 8080; // Step 1
 
 const routes = require('./routes/api');
-const MONGODB_URI = 'mongodb+srv://ben:ben!@#$%^@cluster0.9qtop.mongodb.net/Cluster0?retryWrites=true&w=majority';
+
 // Step 2
-mongoose.connect(MONGODB_URI || 'mongodb+srv://ben:ben!@#$%^@cluster0.9qtop.mongodb.net/Cluster0?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_youtube', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
-const Schema = mongoose.Schema;
-const BlogPostSchema = new Schema({
-
-title: String,
-    body: String,
-    date: {
-        type: String,
-        default: Date.now()
-    
-    
-    }
-    
-
-});
-
-const BlogPost = mongoose.model('BlogPost', BlogPostSchema)
 
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!!!!');
