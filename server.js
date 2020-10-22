@@ -15,6 +15,23 @@ mongoose.connect(MONGODB_URI || 'mongodb+srv://ben:ben!@#$%^@cluster0.9qtop.mong
     useUnifiedTopology: true
 });
 
+const Schema = mongoose.Schema;
+const BlogPostSchema = new Schema({
+
+title: String,
+    body: String,
+    date: {
+        type: String,
+        default: Date.now()
+    
+    
+    }
+    
+
+});
+
+const BlogPost = mongoose.model('BlogPost', BlogPostSchema)
+
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected!!!!');
 });
